@@ -2,9 +2,10 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
+    <script type="text/javascript" src="custom.javascript.js"></script>
+    <title>Date Calculator</title>
 </head>
-<body>
+<body onload="initialise()">
     <div id="titleContainer">
         <div id="title">
             <h1>Date Calculator</h1>
@@ -13,12 +14,14 @@
 
     <div id="optionsContainer">
         <div id="optionsSelectors">
-            <button id="btnStart" onclick="startGame()"/>
+            <button id="btnStart" onclick="startGame()">Start</button>
+            <input id="fldNumDates" placeholder="Number of dates"/>
         </div>
     </div>
 
     <div id="game">
-
+        <table id="gameTable">
+        </table>
     </div>
 </body>
 </html>
