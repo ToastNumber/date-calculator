@@ -3,21 +3,27 @@
  */
 
 function initialise() {
-
+    
 }
 
 function startGame() {
-    alert("Start");
-    populate(10);
+    var numDates = getNumDates();
+    var mode = getMode();
+
+    if (numDates < 1) alert("Number of dates must be greater than 0");
+    else if (isNaN(numDates)) alert("Please enter an integer greater than 0");
+    else {
+        populate(numDates, mode);
+    }
 }
 
-function populate(numDates) {
+function populate(numDates, mode) {
     var table = document.getElementById("gameTable");
 
     //Wipe the contents of the table
     table.innerHTML = "";
 
-    var dates = generateDates(numDates);
+    var dates = generateDates(numDates, getMode());
 
     for (var i = 0; i < numDates; ++i) {
         var row = document.createElement("tr");
@@ -34,33 +40,85 @@ function populate(numDates) {
     }
 }
 
-function generateDates(num) {
+/**
+ * @returns {Number} The number of dates to be generated, as specified by the user. Will return NaN if user enters an
+ * invalid value.
+ */
+function getNumDates() {
+    var s = document.getElementById("fldNumDates").value.trim();
+    return parseInt(s);
+}
+
+/**
+ * @returns {string} A string indicating the difficulty selected by the user - either "easy" or "hard".
+ */
+function getMode() {
+    var s = document.getElementById("mode").value.trim().toLowerCase();
+    return s;
+}
+
+/**
+ *
+ * @param num the number of dates to generate
+ * @param mode string, either "easy" or "hard". "easy" means 1900-1999, "hard means 1900-9999".
+ * @returns {Array} an array of strings representing <i>different</i> dates
+ */
+function generateDates(num, mode) {
     var contains = function(arr, element) {
         for (var i = 0; i < arr.length; ++i) {
             if (arr[i] === element) return true;
         }
 
         return false;
+    };
+
+    var startYear, endYear;
+
+    if (mode === "easy") {
+        startYear = 1900;
+        endYear = 1999;
+    } else {
+        startYear = 1900;
+        endYear = 9999;
     }
 
     var svaret = [];
-
     for (var i = 0; i < num; ++i) {
+        var currentDate;
 
+        do {
+            currentDate = randomDate(startYear, endYear);
+        } while (contains(svaret, currentDate));
+
+        svaret.push(currentDate);
     }
+
+    return svaret;
 }
 
-function randomDate() {
+/**
+ * @param startYear an integer representing the earliest possible year
+ * @param endYear an integer representing the last possible year
+ * @returns {string} of the form "dd/mm/yyyy"
+ */
+function randomDate(startYear, endYear) {
     var isLeap = function(y) {
         return (y % 4 == 0) && (y % 100 == 0 ? y % 400 == 0 : true);
-    }
+    };
 
     var randInt = function(range) {
         return Math.floor(Math.random() * range);
-    }
+    };
 
-    var yearRange = (9999 - 1900);
-    var year = randInt(yearRange) + 1900;
+    var format = function (day, month, year) {
+        var ds = day < 10 ? "0" + day : "" + day;
+        var ms = month < 10 ? "0" + month : "" + month;
+
+        return ds + "/" + ms + "/" + year;
+    };
+
+    var yearRange = (endYear - startYear);
+    var year = randInt(yearRange) + startYear;
 
     var month = randInt(12) + 1;
 
@@ -74,7 +132,7 @@ function randomDate() {
 
     var day = randInt(dayRange) + 1;
 
-    return day + "/" + month + "/" + year;
+    return format(day, month, year);
 }
 
 
