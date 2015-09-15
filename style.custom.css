@@ -1,0 +1,36 @@
+body {
+    background-color: aqua;
+}
+
+#titleContainer {
+    text-align: center;
+}
+
+#optionsContainer {
+    text-align: center;
+}
+
+#title h1 {
+    font-family: "century gothic", sans-serif;
+}
+
+#game {
+    background-color: #ffcd00;
+    margin: 20px 40px;
+    border: 7px solid black;
+}
+
+#gameTable td {
+    padding: 5px;
+    width: 30%;
+    text-align: center;
+}
+
+#gameTable {
+    width: 100%;
+    font-family: arial;
+    font-size: 20px;
+}
+
+
+

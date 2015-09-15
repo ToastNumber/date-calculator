@@ -226,18 +226,22 @@ function isTimed() {
  * Shows a prompt to the user to change the number of dates shown.
  */
 function showNumPrompt() {
-    var valid;
+    var finished;
 
     do {
-        valid = true;
+        finished = true;
 
-        var temp = parseInt(prompt("Enter the number of dates to be generated in each round", "" + _numDates));
+        var input = prompt("Enter the number of dates to be generated in each round", "" + _numDates);
 
-        if (temp < 1 || isNaN(temp)) {
-            valid = false;
-            alert("Please enter an integer greater than 0.");
-        } else _numDates = temp;
-    } while (!valid);
+        if (input === null) finished = true;
+        else {
+            var val = parseInt(input);
+            if (val < 1 || isNaN(val)) {
+                finished = false;
+                alert("Please enter an integer greater than 0.");
+            } else _numDates = val;
+        }
+    } while (!finished);
 }
 
 
