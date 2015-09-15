@@ -5,9 +5,10 @@
 /**
  * either "running" or "stopped"
  */
-var _state = "stopped";
+var _running = false;
 
 function initialise() {
+    addEventListeners();
 }
 
 function startGame() {
@@ -19,6 +20,7 @@ function startGame() {
     else if (isNaN(numDates)) alert("Please enter an integer greater than 0");
     else {
         populate(numDates, mode);
+        _running = true;
     }
 }
 
