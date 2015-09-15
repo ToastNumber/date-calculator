@@ -2,6 +2,11 @@
  * Created by Kelsey McKenna on 14/09/2015.
  */
 
+/**
+ * either "running" or "stopped"
+ */
+var _state = "stopped";
+
 function initialise() {
 }
 
