@@ -21,6 +21,7 @@ How to Use
     - If are you correct, the table will show "Correct!"
     - If you are incorrect, the table will show the actual answer.
 6. Once you have completed all answers, the time taken will be shown.
+    - The time shown is equal to the time elapsed since the start button was clicked (or since '8' was pressed).
     - If you uncheck the "Timed" box, the time will not be shown.
 
 About
