@@ -170,8 +170,10 @@ function triggerUserInput(val) {
 
         if (val === expectedIndex) {
             setContent(_answerIndex, 2, "Correct!");
+            setClass(_answerIndex, 2, "correct");
         } else {
-            setContent(_answerIndex, 2, "Expected " + intToDay(expectedIndex));
+            setContent(_answerIndex, 2, intToDay(expectedIndex));
+            setClass(_answerIndex, 2, "incorrect");
         }
 
         ++_answerIndex;
@@ -180,12 +182,32 @@ function triggerUserInput(val) {
     }
 }
 
+/**
+ * Sets the content of the specified cell in the game table
+ * @param row the row index
+ * @param col the column index
+ * @param val the new value for the cell
+ */
 function setContent(row, col, val) {
     var table = document.getElementById("gameTable");
     var rowD = table.children[row];
     var cellD = rowD.cells[col];
 
     cellD.innerHTML = val;
+}
+
+/**
+ * Sets the class of the specified cell in the game table
+ * @param row the row index
+ * @param col the column index
+ * @param newClass the new class for the cell
+ */
+function setClass(row, col, newClass) {
+    var table = document.getElementById("gameTable");
+    var rowD = table.children[row];
+    var cellD = rowD.cells[col];
+
+    cellD.setAttribute("class", newClass);
 }
 
 var _gameStartTime;
@@ -226,18 +248,22 @@ function isTimed() {
  * Shows a prompt to the user to change the number of dates shown.
  */
 function showNumPrompt() {
-    var valid;
+    var finished;
 
     do {
-        valid = true;
+        finished = true;
 
-        var temp = parseInt(prompt("Enter the number of dates to be generated in each round", "" + _numDates));
+        var input = prompt("Enter the number of dates to be generated in each round", "" + _numDates);
 
-        if (temp < 1 || isNaN(temp)) {
-            valid = false;
-            alert("Please enter an integer greater than 0.");
-        } else _numDates = temp;
-    } while (!valid);
+        if (input === null) finished = true;
+        else {
+            var val = parseInt(input);
+            if (val < 1 || isNaN(val)) {
+                finished = false;
+                alert("Please enter an integer greater than 0.");
+            } else _numDates = val;
+        }
+    } while (!finished);
 }
 
 

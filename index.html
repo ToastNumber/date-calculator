@@ -5,6 +5,8 @@
     <script type="text/javascript" src="javascript.custom.js"></script>
     <script type="text/javascript" src="keyControl.custom.js"></script>
     <script type="text/javascript" src="calc.custom.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.custom.css"/>
+    <link rel="icon" href="images/Calendar.jpg"/>
     <title>Date Calculator</title>
 </head>
 <body onload="initialise()">
@@ -22,17 +24,16 @@
                 <option>Easy</option>
                 <option>Hard</option>
             </select>
-            <table>
-                <tr>
-                    <td><span>Timed</span></td>
-                    <td><label for="timeCheckbox"></label><input id="timeCheckbox" type="checkbox" checked="true"></td>
-                </tr>
-            </table>
+            <span>Timed</span>
+            <label for="timeCheckbox"></label><input id="timeCheckbox" type="checkbox" checked="true">
         </div>
     </div>
 
     <div id="game">
         <table id="gameTable">
+            <tr>
+                <td>Click 'Start' or press '8' to begin</td>
+            </tr>
         </table>
     </div>
 </body>
