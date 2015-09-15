@@ -216,7 +216,10 @@ function stopGame() {
     _running = false;
 }
 
-function showNumDialog() {
+/**
+ * Shows a prompt to the user to change the number of dates shown.
+ */
+function showNumPrompt() {
     var valid;
 
     do {
