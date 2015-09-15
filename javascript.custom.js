@@ -50,13 +50,13 @@ function populate(numDates, mode) {
     }
 }
 
+var _numDates = 10;
 /**
  * @returns {Number} The number of dates to be generated, as specified by the user. Will return NaN if user enters an
  * invalid value.
  */
 function getNumDates() {
-    var s = document.getElementById("fldNumDates").value.trim();
-    return parseInt(s);
+    return _numDates;
 }
 
 /**
@@ -182,10 +182,10 @@ function triggerUserInput(val) {
 
 function setContent(row, col, val) {
     var table = document.getElementById("gameTable");
-    var row = table.children[row];
-    var cell = row.cells[col];
+    var rowD = table.children[row];
+    var cellD = rowD.cells[col];
 
-    cell.innerHTML = val;
+    cellD.innerHTML = val;
 }
 
 var _gameStartTime;
@@ -206,12 +206,27 @@ function stopGame() {
     };
 
     var time = (Date.now() - _gameStartTime)/1000;
-    alert("Time taken: " + format(time));
+    alert("Time taken: " + format(time) + (time < 60 ? " seconds" : ""));
 
     _running = false;
 }
 
+function showNumDialog() {
+    var valid;
 
+    do {
+        valid = true;
+
+        var temp = parseInt(prompt("Enter the number of dates to be generated in each round", _numDates));
+
+        if (temp < 1 || isNaN(temp)) {
+            valid = false;
+            alert("Please enter an integer greater than 0.");
+        } else {
+            _numDates = temp;
+        }
+    } while (!valid);
+}
 
 
 
