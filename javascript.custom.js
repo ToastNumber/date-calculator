@@ -50,13 +50,13 @@ function populate(numDates, mode) {
     }
 }
 
+var _numDates = 10;
 /**
  * @returns {Number} The number of dates to be generated, as specified by the user. Will return NaN if user enters an
  * invalid value.
  */
 function getNumDates() {
-    var s = document.getElementById("fldNumDates").value.trim();
-    return parseInt(s);
+    return _numDates;
 }
 
 /**
@@ -73,7 +73,7 @@ function getMode() {
  * @returns {Array} an array of strings representing <i>different</i> dates
  */
 function generateDates(num, mode) {
-    var contains = function(arr, element) {
+    var contains = function (arr, element) {
         for (var i = 0; i < arr.length; ++i) {
             if (arr[i] === element) return true;
         }
@@ -111,11 +111,11 @@ function generateDates(num, mode) {
  * @returns {string} of the form "dd/mm/yyyy"
  */
 function randomDate(startYear, endYear) {
-    var isLeap = function(y) {
+    var isLeap = function (y) {
         return (y % 4 == 0) && (y % 100 == 0 ? y % 400 == 0 : true);
     };
 
-    var randInt = function(range) {
+    var randInt = function (range) {
         return Math.floor(Math.random() * range);
     };
 
@@ -182,10 +182,10 @@ function triggerUserInput(val) {
 
 function setContent(row, col, val) {
     var table = document.getElementById("gameTable");
-    var row = table.children[row];
-    var cell = row.cells[col];
+    var rowD = table.children[row];
+    var cellD = rowD.cells[col];
 
-    cell.innerHTML = val;
+    cellD.innerHTML = val;
 }
 
 var _gameStartTime;
@@ -193,25 +193,43 @@ var _gameStartTime;
  * Stops the game - displays the time elapsed and stops listening for keys
  */
 function stopGame() {
-    var format = function(t) {
-        var minutes = Math.floor(t/60);
+    var format = function (t) {
+        var minutes = Math.floor(t / 60);
         var seconds = t % 60;
 
+        var s = "" + seconds;
+        var periodIndex = s.indexOf(".");
+
+        if (periodIndex > -1) s = s.substring(0, Math.min(periodIndex + 3, s.length));
+
         if (minutes > 0) {
-            var s = (seconds < 10 ? "0" + seconds : "" + seconds);
-            return minutes + s;
+            s = (seconds < 10 ? "0" + s : "" + s);
+            return minutes + ":" + s;
         } else {
-            return "" + seconds;
+            return "" + s;
         }
     };
 
-    var time = (Date.now() - _gameStartTime)/1000;
-    alert("Time taken: " + format(time));
+    var time = (Date.now() - _gameStartTime) / 1000;
+    alert("Time taken: " + format(time) + (time < 60 ? " seconds" : ""));
 
     _running = false;
 }
 
+function showNumDialog() {
+    var valid;
 
+    do {
+        valid = true;
+
+        var temp = parseInt(prompt("Enter the number of dates to be generated in each round", "" + _numDates));
+
+        if (temp < 1 || isNaN(temp)) {
+            valid = false;
+            alert("Please enter an integer greater than 0.");
+        } else _numDates = temp;
+    } while (!valid);
+}
 
 
 
