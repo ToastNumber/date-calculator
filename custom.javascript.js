@@ -3,7 +3,7 @@
  */
 
 function initialise() {
-    
+
 }
 
 function startGame() {
@@ -23,7 +23,7 @@ function populate(numDates, mode) {
     //Wipe the contents of the table
     table.innerHTML = "";
 
-    var dates = generateDates(numDates, getMode());
+    var dates = generateDates(numDates, mode);
 
     for (var i = 0; i < numDates; ++i) {
         var row = document.createElement("tr");
@@ -53,8 +53,7 @@ function getNumDates() {
  * @returns {string} A string indicating the difficulty selected by the user - either "easy" or "hard".
  */
 function getMode() {
-    var s = document.getElementById("mode").value.trim().toLowerCase();
-    return s;
+    return document.getElementById("mode").value.trim().toLowerCase();
 }
 
 /**
