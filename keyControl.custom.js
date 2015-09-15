@@ -2,21 +2,24 @@
  * Created by Kelsey McKenna on 15/09/2015.
  */
 
+/**
+ * Add event listeners for key presses so that the user can enter the day using a single key press.
+ */
 function addEventListeners() {
-    var getPlain = function(keyCode) {
+    var getNum = function(keyCode) {
         if (keyCode >= 48 && keyCode <= 57) {
-            return "" + (keyCode - 48);
+            return keyCode - 48;
         } else {
-            return "ERROR";
+            return NaN;
         }
     };
 
     window.addEventListener("keypress", function(e) {
         var source = e.srcElement.id;
-        var plain = getPlain(e.keyCode);
+        var val = getNum(e.keyCode);
 
-        if (source !== "fldNumDates" && plain != "ERROR" &&_running === true) {
-            console.log(plain);
+        if (source !== "fldNumDates" && !isNaN(val) &&_running === true) {
+
         }
     });
 }
