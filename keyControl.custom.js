@@ -7,7 +7,7 @@
  */
 function addEventListeners() {
     var getNum = function(keyCode) {
-        if (keyCode >= 48 && keyCode <= 57) {
+        if (keyCode >= 48 && keyCode <= 54 || keyCode === 56) {
             return keyCode - 48;
         } else {
             return NaN;
@@ -19,7 +19,7 @@ function addEventListeners() {
         var val = getNum(e.keyCode);
 
         if (source !== "fldNumDates" && !isNaN(val) &&_running === true) {
-
+            triggerUserInput(val);
         }
     });
 }

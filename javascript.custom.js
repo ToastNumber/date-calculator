@@ -21,6 +21,8 @@ function startGame() {
     else {
         populate(numDates, mode);
         _running = true;
+        _answerIndex = 0;
+        _gameStartTime = Date.now();
     }
 }
 
@@ -31,6 +33,7 @@ function populate(numDates, mode) {
     table.innerHTML = "";
 
     var dates = generateDates(numDates, mode);
+    _currentDates = dates;
 
     for (var i = 0; i < numDates; ++i) {
         var row = document.createElement("tr");
@@ -141,7 +144,55 @@ function randomDate(startYear, endYear) {
     return format(day, month, year);
 }
 
+/**
+ * An integer storing the index of the date to be answered
+ */
+var _answerIndex;
+var _currentDates;
+/**
+ * Handles the user's input - either a day value entered, or the resetting.
+ * @param val the value/number given by the user.
+ */
+function triggerUserInput(val) {
+    if (val === 8) startGame();
+    else {
+        var dayToInt = function (day) {
+            return ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"].indexOf(day);
+        };
 
+        var intToDay = function (i) {
+            return ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"][i];
+        };
+
+        var expected = dayToInt(getDayFrom(_currentDates[_answerIndex]));
+
+        if (val !== expected) alert("Wrong: expected " + intToDay(expected) + " (" + expected + ")");
+
+        ++_answerIndex;
+    }
+
+    if (_answerIndex >= _currentDates.length) stopGame();
+}
+
+var _gameStartTime;
+function stopGame() {
+    var format = function(t) {
+        var minutes = Math.floor(t/60);
+        var seconds = t % 60;
+
+        if (minutes > 0) {
+            var s = (seconds < 10 ? "0" + seconds : "" + seconds);
+            return minutes + s;
+        } else {
+            return "" + seconds;
+        }
+    };
+
+    var time = (Date.now() - _gameStartTime)/1000;
+    alert("Time taken: " + format(time));
+
+    _running = false;
+}
 
 
 
