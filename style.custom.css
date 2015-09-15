@@ -1,5 +1,5 @@
 body {
-    background-color: aqua;
+    background-color: lightskyblue;
 }
 
 #titleContainer {
@@ -12,25 +12,33 @@ body {
 
 #title h1 {
     font-family: "century gothic", sans-serif;
+    font-size: 50px;
 }
 
 #game {
-    background-color: #ffcd00;
-    margin: 20px 40px;
+    background-color: white;
+    margin: 30px 15%;
     border: 7px solid black;
+    overflow: hidden;
 }
 
 #gameTable td {
     padding: 5px;
-    width: 30%;
     text-align: center;
+    width: 30%;
 }
 
 #gameTable {
     width: 100%;
-    font-family: arial;
+    font-family: arial, sans-serif;
     font-size: 20px;
 }
 
+td.incorrect {
+    color: red;
+}
 
+td.correct {
+    color: green;
+}
 
