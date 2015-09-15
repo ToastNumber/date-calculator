@@ -18,9 +18,10 @@ How to Use
     - The number of dates generated can be changed by clicking the "Change No. Dates" button.
 4. Starting with the first date, enter 0-6 (Sunday-Saturday) to answer.
 5. The day you enter will be shown in the table.
-    - If are you correct, the table will show `Correct!`
-    - If you are incorrect, the table will show `Expected DAY (INDEX)`
+    - If are you correct, the table will show "Correct!"
+    - If you are incorrect, the table will show "Expected DAY (INDEX)"
 6. Once you have completed all answers, the time taken will be shown.
+    - If you uncheck the "Timed" box, the time will not be shown.
 
 About
 ----------

@@ -210,10 +210,16 @@ function stopGame() {
         }
     };
 
-    var time = (Date.now() - _gameStartTime) / 1000;
-    alert("Time taken: " + format(time) + (time < 60 ? " seconds" : ""));
+    if (isTimed()) {
+        var time = (Date.now() - _gameStartTime) / 1000;
+        alert("Time taken: " + format(time) + (time < 60 ? " seconds" : ""));
+    }
 
     _running = false;
+}
+
+function isTimed() {
+    return document.getElementById("timeCheckbox").checked;
 }
 
 /**
