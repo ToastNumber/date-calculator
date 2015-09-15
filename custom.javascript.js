@@ -3,7 +3,6 @@
  */
 
 function initialise() {
-
 }
 
 function startGame() {
@@ -11,6 +10,7 @@ function startGame() {
     var mode = getMode();
 
     if (numDates < 1) alert("Number of dates must be greater than 0");
+    else if (numDates > 500) alert("Too many dates");
     else if (isNaN(numDates)) alert("Please enter an integer greater than 0");
     else {
         populate(numDates, mode);
