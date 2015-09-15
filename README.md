@@ -1,6 +1,6 @@
 Date Calculator
 ===============
-This is a javascript application for practising date calculation.
+This is a javascript application for practising mental date calculation.
 
 Getting Started
 ---------------
