@@ -164,17 +164,34 @@ function triggerUserInput(val) {
             return ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"][i];
         };
 
-        var expected = dayToInt(getDayFrom(_currentDates[_answerIndex]));
+        setContent(_answerIndex, 1, intToDay(val));
 
-        if (val !== expected) alert("Wrong: expected " + intToDay(expected) + " (" + expected + ")");
+        var expectedIndex = dayToInt(getDayFrom(_currentDates[_answerIndex]));
+
+        if (val === expectedIndex) {
+            setContent(_answerIndex, 2, "Correct!");
+        } else {
+            setContent(_answerIndex, 2, "Expected " + intToDay(expectedIndex));
+        }
 
         ++_answerIndex;
-    }
 
-    if (_answerIndex >= _currentDates.length) stopGame();
+        if (_answerIndex >= _currentDates.length) stopGame();
+    }
+}
+
+function setContent(row, col, val) {
+    var table = document.getElementById("gameTable");
+    var row = table.children[row];
+    var cell = row.cells[col];
+
+    cell.innerHTML = val;
 }
 
 var _gameStartTime;
+/**
+ * Stops the game - displays the time elapsed and stops listening for keys
+ */
 function stopGame() {
     var format = function(t) {
         var minutes = Math.floor(t/60);

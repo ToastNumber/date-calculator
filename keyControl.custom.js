@@ -18,8 +18,8 @@ function addEventListeners() {
         var source = e.srcElement.id;
         var val = getNum(e.keyCode);
 
-        if (source !== "fldNumDates" && !isNaN(val) &&_running === true) {
-            triggerUserInput(val);
+        if (source !== "fldNumDates" && !isNaN(val)) {
+            if (_running === true || val === 8) triggerUserInput(val);
         }
     });
 }
