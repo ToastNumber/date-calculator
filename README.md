@@ -4,8 +4,8 @@ This is a javascript application for practising mental date calculation.
 
 Getting Started
 ---------------
-1. Learn mental date calculation from `put link here`.
-2. Visit the project site at `put link here`.
+1. Learn mental date calculation [here](http://www.kinch2002.com/how-to-calculate-the-day-of-the-week-from-a-date/).
+2. Visit the project site [here](http://toastnumber.github.io/date-calculator/).
 
 How to Use
 ----------
